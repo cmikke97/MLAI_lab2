@@ -68,7 +68,7 @@ class Caltech(VisionDataset):
             tuple: (sample, target) where target is class_index of the target class.
         '''
 
-        image = self.data.iloc[index, 2]
+        image = self.data.iloc[index, 1]
         label = self.data.iloc[index, 0]
         
         # Provide a way to access image and label via index
