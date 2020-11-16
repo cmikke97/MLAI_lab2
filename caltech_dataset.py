@@ -30,6 +30,7 @@ class Caltech(VisionDataset):
         file = open(self.file_path, "r")
         i=0;
         for line if file:
+            line = line[:-1]
             image = image.open(root+"/"+line)
             dict_data[i] = (line, image)
             i+=1
