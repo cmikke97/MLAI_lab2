@@ -60,9 +60,12 @@ class Caltech(VisionDataset):
             tuple: (sample, target) where target is class_index of the target class.
         '''
 
-        image, label = ... # Provide a way to access image and label via index
-                           # Image should be a PIL Image
-                           # label can be int
+        image = self.data.iloc[index, 2]
+        label = self.data.iloc[index, 0]
+        
+        # Provide a way to access image and label via index
+        # Image should be a PIL Image
+        # label can be int
 
         # Applies preprocessing when accessing the image
         if self.transform is not None:
