@@ -31,7 +31,7 @@ class Caltech(VisionDataset):
         i=0;
         for line in file:
             line = line[:-1]
-            image = image.open(root+"/"+line)
+            image = Image.open(root+"/"+line)
             label = line.split("/")[0]
             if label != "BACKGROUND_Google" :
                 dict_data[i] = (line, image)
