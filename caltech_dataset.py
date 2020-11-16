@@ -39,7 +39,7 @@ class Caltech(VisionDataset):
             val_label = dict_label.get(label)
             if val_label == None:
                 dict_label[label] = j
-                l += 1
+                j += 1
                 
             if label != "BACKGROUND_Google" :
                 dict_data[i] = (dict_label.get(label), image)
