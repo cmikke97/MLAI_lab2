@@ -32,8 +32,10 @@ class Caltech(VisionDataset):
         for line if file:
             line = line[:-1]
             image = image.open(root+"/"+line)
-            dict_data[i] = (line, image)
-            i+=1
+            label = line.split("/")[0]
+            if label != "BACKGROUND_Google" :
+                dict_data[i] = (line, image)
+                i+=1
         file.close()
         
         self.data = pd.DataFrame.from_dict(dict_data, orient='index')
