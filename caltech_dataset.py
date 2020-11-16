@@ -20,6 +20,23 @@ class Caltech(VisionDataset):
 
         self.split = split # This defines the split you are going to use
                            # (split files are called 'train.txt' and 'test.txt')
+            
+        if split == "train":
+            self.file_path='Caltech101/train.txt'
+        elif split == "test":
+            self.file_path='Caltech101/test.txt'
+            
+        dict_data = {}
+        file = open(self.file_path, "r")
+        i=0;
+        for line if file:
+            image = image.open(root+"/"+line)
+            dict_data[i] = (line, image)
+            i+=1
+        file.close()
+        
+        self.data = pd.DataFrame.from_dict(dict_data, orient='index')
+        self.transform = transform
 
         '''
         - Here you should implement the logic for reading the splits files and accessing elements
