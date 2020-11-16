@@ -2,10 +2,10 @@ from torchvision.datasets import VisionDataset
 
 from PIL import Image
 
+import pandas as pd
 import os
 import os.path
 import sys
-import pandas as pd
 
 
 def pil_loader(path):
@@ -21,15 +21,15 @@ class Caltech(VisionDataset):
 
         self.split = split # This defines the split you are going to use
                            # (split files are called 'train.txt' and 'test.txt')
-            
+    
         if split == "train":
             self.file_path='Caltech101/train.txt'
         elif split == "test":
             self.file_path='Caltech101/test.txt'
-            
+        
         dict_data = {}
         dict_label = {}
-        file = open(self.file_path, "r")
+        file = open(self.file_path,"r")
         i=0
         j=0
         for line in file:
@@ -40,16 +40,16 @@ class Caltech(VisionDataset):
             
             if val_label == None:
                 dict_label[label] = j
-                j = j + 1
+                j=j+1
                 
             if label != "BACKGROUND_Google" :
                 dict_data[i] = (dict_label.get(label), image)
-                i = i + 1
+                i=i+1
         file.close()
-        
-        self.data = pd.DataFrame.from_dict(dict_data, orient='index')
-        self.transform = transform
 
+        self.data = pd.DataFrame.from_dict(dict_data, orient='index')
+        self.transform = transform 
+        
         '''
         - Here you should implement the logic for reading the splits files and accessing elements
         - If the RAM size allows it, it is faster to store all data in memory
@@ -64,13 +64,12 @@ class Caltech(VisionDataset):
         __getitem__ should access an element through its index
         Args:
             index (int): Index
-
         Returns:
             tuple: (sample, target) where target is class_index of the target class.
         '''
-
-        image = self.data.iloc[index, 1]
-        label = self.data.iloc[index, 0]
+        
+        image = self.data.iloc[index,1]
+        label = self.data.iloc[index,0]
         
         # Provide a way to access image and label via index
         # Image should be a PIL Image
